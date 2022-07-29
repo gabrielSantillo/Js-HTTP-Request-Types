@@ -1,10 +1,5 @@
 function post_success(response) {
-  document.body.insertAdjacentHTML(
-    `beforeend`,
-    `
-      <h1>Posted!</h1>
-      `
-  );
+    alert(`Posted`);
 }
 
 function post_failure(error) {
@@ -17,11 +12,6 @@ function post_failure(error) {
 }
 
 function postUserMessage(details) {
-  let user_id_input = document.getElementById(`userId`);
-  let user_id_value = user_id_input[`value`];
-
-  let id_input = document.getElementById(`id`);
-  let id_input_value = id_input[`value`];
 
   let user_title_input = document.getElementById(`title`);
   let user_title_value = user_title_input[`value`];
@@ -34,8 +24,6 @@ function postUserMessage(details) {
       url: `https://jsonplaceholder.typicode.com/posts`,
       method: `POST`,
       data: {
-        userId: user_id_value,
-        id: id_input_value,
         title: user_title_value,
         body: user_body_value,
       },
@@ -48,12 +36,7 @@ let button = document.querySelector(`button`);
 button.addEventListener(`click`, postUserMessage);
 
 function post_success_change(response) {
-  document.body.insertAdjacentHTML(
-    `beforeend`,
-    `
-      <h1>Change made!</h1>
-      `
-  );
+    alert(`Change made`);
 }
 
 function post_failure_change(error) {
@@ -66,8 +49,6 @@ function post_failure_change(error) {
 }
 
 function postUserMessageChange(details) {
-  let user_id_input = document.getElementById(`change_userId`);
-  let user_id_value_change = user_id_input[`value`];
 
   let id_input = document.getElementById(`change_id`);
   let id_value_change = id_input[`value`];
@@ -83,7 +64,6 @@ function postUserMessageChange(details) {
       url: `https://jsonplaceholder.typicode.com/posts/1`,
       method: `PATCH`,
       data: {
-        userId: user_id_value_change,
         id: id_value_change,
         title: user_title_value_change,
         body: user_body_value_change,
@@ -97,16 +77,12 @@ let button_change = document.getElementById(`button_change`);
 button_change.addEventListener(`click`, postUserMessageChange);
 
 function post_success_delete(response) {
-  document.body.insertAdjacentHTML(
-    `beforeend`,
-    `
-        <h1>Post deleted!</h1>
-        `
-  );
+    alert(`Post deleted`);
 }
 
 function post_failure_delete(error) {
-  document.body.insertAdjacentHTML(
+  
+    document.body.insertAdjacentHTML(
     `beforeend`,
     `
         <h1>Try again</h1>
@@ -120,11 +96,8 @@ function postUserMessageDelete(details) {
 
   axios
     .request({
-      url: `https://jsonplaceholder.typicode.com/posts/1`,
-      method: `DELETE`,
-      data: {
-        id: id_value_delete,
-      },
+      url: `https://jsonplaceholder.typicode.com/posts/${id_value_delete}`,
+      method: `DELETE`
     })
     .then(post_success_delete)
     .catch(post_failure_delete);
